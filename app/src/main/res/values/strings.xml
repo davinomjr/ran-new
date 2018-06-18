@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RAN</string>
+    <string name="login_email" translatable="false">Email</string>
+    <string name="login_password" translatable="false">Password</string>
+    <string name="login_signin_button_text">Login</string>
+    <string name="login_lost_password_button_text">Lost password?</string>
+    <string name="login_signup_button_text">SIgn up</string>
+</resources>

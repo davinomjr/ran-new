@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RAN</string>
+    <string name="login_signin_button_text">Entrar</string>
+    <string name="login_lost_password_button_text">Esqueceu a senha?</string>
+    <string name="login_signup_button_text">Criar conta</string>
+</resources>
