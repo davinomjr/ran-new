@@ -23,6 +23,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -32,9 +35,10 @@ android {
 }
 
 dependencies {
+
     // Base
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$project.supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
@@ -42,17 +46,37 @@ dependencies {
     implementation "com.android.support:design:$project.supportLibraryVersion"
 
     // Android Arch Components
-    implementation "android.arch.lifecycle:runtime:1.1.1"
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'android.arch.lifecycle:runtime:1.1.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
     kapt "android.arch.lifecycle:compiler:$project.archVersion"
     implementation "android.arch.persistence.room:runtime:$project.archVersion"
     kapt "android.arch.persistence.room:compiler:$project.archVersion"
     implementation "android.arch.persistence.room:rxjava2:$project.archVersion"
+
+    // Dagger core
+    compile "com.google.dagger:dagger:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$project.daggerVersion"
+
+    // Dagger Android
+    compile "com.google.dagger:dagger-android-support:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+
+    //support libraries with dagger 2
+    compile "com.google.dagger:dagger-android-support:$project.daggerVersion"
 
     // Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    // Common
 
+    // Data Binding
+    kapt 'com.android.databinding:compiler:3.1.3'
+    implementation project(':common')
 }
+
+apply plugin: 'kotlin-android-extensions'

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.davinomjr.ran.presentation.viewmodel.LoginViewModel">
+        </variable>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.ui.LoginActivity">
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+            <LinearLayout
+                android:layout_width="344dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingTop="56dp"
+                android:layout_centerInParent="true"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/ran_logo" />
+
+                <!-- Email Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp">
+
+                    <EditText
+                        android:text="@={viewModel.email}"
+                        android:id="@+id/input_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/login_email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
+
+                <!-- Password Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:passwordToggleContentDescription="@string/login_password"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:text="@={viewModel.password}"
+                        android:id="@+id/input_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/login_password"
+                        android:inputType="textPassword"
+                        android:maxLines="1" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/md_blue_800"
+                    android:padding="12dp"
+                    android:text="@string/login_signin_button_text"
+                    android:textColor="@color/white" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="24dp">
+
+
+                    <TextView
+                        android:id="@+id/link_lostPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:text="@string/login_lost_password_button_text"
+                        android:textSize="16dip" />
+
+
+                    <TextView
+                        android:id="@+id/link_signup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/login_signup_button_text"
+                        android:textSize="16dip" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>
