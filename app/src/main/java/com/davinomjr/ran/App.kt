@@ -3,6 +3,7 @@ package com.davinomjr.ran
 import android.app.Application
 import com.davinomjr.ran.di.AppModule
 import com.davinomjr.ran.di.DaggerAppComponent
+import com.davinomjr.ran.di.module.LoginModule
 
 /*
  * Created by Davino Junior - dmtsj@{cin.ufpe.br, gmail.com}

@@ -58,7 +58,9 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/login_email"
                         android:inputType="textEmailAddress"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        validateEmail="@{@string/login_email_error_text}"
+                        />
                 </android.support.design.widget.TextInputLayout>
 
                 <!-- Password Label -->
@@ -78,7 +80,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/login_password"
                         android:inputType="textPassword"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        validatePassword="@{@string/login_password_error_text}"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.v7.widget.AppCompatButton

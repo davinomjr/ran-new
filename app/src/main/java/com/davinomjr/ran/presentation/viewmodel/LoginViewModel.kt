@@ -1,23 +1,24 @@
 package com.davinomjr.ran.presentation.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.util.Log
-import com.davinomjr.common.ui.BaseActivity
 import com.davinomjr.common.viewmodel.BaseViewModel
-import com.davinomjr.ran.presentation.ui.BaseFragment
+import com.davinomjr.ran.domain.entities.LoginData
+import com.davinomjr.ran.domain.interactor.login.SignUpLogin
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
+import java.util.*
+import javax.inject.Inject
 
 /*
  * Created by Davino Junior - dmtsj@{cin.ufpe.br, gmail.com}
  * at 06/21/2018 22:15
  */
  
-class LoginViewModel : BaseViewModel(){
+class LoginViewModel
+@Inject constructor(private val signInLoginInteractor: SignUpLogin,
+                    private val validateLoginInteractor: ValidateLogin)
+    : BaseViewModel(){
 
-    companion object {
-        fun create(fragment: BaseFragment): LoginViewModel = ViewModelProviders.of(fragment).get(LoginViewModel::class.java)
-    }
 
     val TAG = LoginViewModel::class.java.simpleName
 
@@ -25,7 +26,14 @@ class LoginViewModel : BaseViewModel(){
     val password = MutableLiveData<String>()
 
     fun handleLoginClick(){
-        Log.i(TAG,"current email = ${email.value} and current pass = ${password.value}")
+        val loginData = LoginData(email.value.toString(), password.value.toString())
+        validateLoginInteractor.execute({it.either(::handleFailure, ::signIn)}, loginData)
     }
 
+    fun signIn(result: Boolean){
+        if(result){
+            val loginData = LoginData(email.value.toString(), password.value.toString())
+            signInLoginInteractor.execute({it.either(::handleFailure, {})}, loginData)
+        }
+    }
 }
