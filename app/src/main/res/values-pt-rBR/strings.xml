@@ -6,4 +6,7 @@
     <string name="login_signup_button_text">Criar conta</string>
     <string name="login_email_error_text">Email inválido</string>
     <string name="login_password_error_text">Senha inválida. Favor informar uma senha com mais de 6 digitos.</string>
+    <string name="login_password_hint">senha</string>
+    <string name="login_password_hide">Mostrar/Esconder senha</string>
+    <string name="login_name">Nome</string>
 </resources>

@@ -1,1 +1,1 @@
-include ':app', ':common-debug', ':common'
+include ':app', ':common'

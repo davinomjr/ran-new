@@ -2,11 +2,11 @@ package com.davinomjr.ran.presentation.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import com.davinomjr.common.viewmodel.BaseViewModel
-import com.davinomjr.ran.domain.entities.LoginData
+import com.davinomjr.ran.domain.entities.UserData
+import com.davinomjr.ran.domain.entities.User
+import com.davinomjr.ran.domain.interactor.login.SignInLogin
 import com.davinomjr.ran.domain.interactor.login.SignUpLogin
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
-import java.util.*
+import io.reactivex.Single
 import javax.inject.Inject
 
 /*
@@ -15,7 +15,8 @@ import javax.inject.Inject
  */
  
 class LoginViewModel
-@Inject constructor(private val signInLoginInteractor: SignUpLogin,
+@Inject constructor(private val signUpInteractor: SignUpLogin,
+                    private val signInInteractor: SignInLogin,
                     private val validateLoginInteractor: ValidateLogin)
     : BaseViewModel(){
 
@@ -25,15 +26,15 @@ class LoginViewModel
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
-    fun handleLoginClick(){
-        val loginData = LoginData(email.value.toString(), password.value.toString())
-        validateLoginInteractor.execute({it.either(::handleFailure, ::signIn)}, loginData)
+    fun handleLoginClick() : Single<User> {
+        val userData = UserData(email.value.toString(), password.value.toString())
+        return validateLoginInteractor.execute(userData)
+                                      .flatMap { signInInteractor.execute(userData) }
     }
 
-    fun signIn(result: Boolean){
-        if(result){
-            val loginData = LoginData(email.value.toString(), password.value.toString())
-            signInLoginInteractor.execute({it.either(::handleFailure, {})}, loginData)
-        }
+    fun handleSignUpClick() : Single<User> {
+        val userData = UserData(email.value.toString(), password.value.toString())
+        return validateLoginInteractor.execute(userData)
+                .flatMap { signUpInteractor.execute(userData) }
     }
 }

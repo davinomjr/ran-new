@@ -6,6 +6,7 @@ import com.davinomjr.ran.di.module.LoginModule
 import com.davinomjr.ran.di.module.ViewModelModule
 import com.davinomjr.ran.presentation.ui.BaseFragment
 import com.davinomjr.ran.presentation.ui.LoginFragment
+import com.davinomjr.ran.presentation.ui.SignUpFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -23,4 +24,5 @@ import javax.inject.Singleton
 interface AppComponent {
      fun inject(app: App)
      fun inject(fragment: LoginFragment)
+     fun inject(fragment: SignUpFragment)
  }

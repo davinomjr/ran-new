@@ -13,12 +13,12 @@ import android.widget.EditText
 
 @BindingAdapter("validateEmail")
 fun validateEmail(editText: EditText, errorMessage: String){
-    addValidationRule(editText,errorMessage,{ !it.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches()})
+    addValidationRule(editText,errorMessage,{ Validator.isEmailValid(it) })
 }
 
 @BindingAdapter("validatePassword")
 fun validatePassword(editText: EditText, errorMessage: String){
-    addValidationRule(editText, errorMessage, { !it.isEmpty() })
+    addValidationRule(editText, errorMessage, { Validator.isPasswordValid(it) })
 }
 
 

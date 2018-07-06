@@ -13,11 +13,11 @@ import com.davinomjr.ran.R
 import com.davinomjr.ran.presentation.viewmodel.LoginViewModel
 import javax.inject.Inject
 
-class LoginActivity : BaseActivity() {
+class SignUpActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_sign_up)
 
         if(savedInstanceState == null){
             supportFragmentManager

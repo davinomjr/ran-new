@@ -3,7 +3,10 @@ package com.davinomjr.ran.presentation.viewmodel
 import com.davinomjr.common.domain.Either
 import com.davinomjr.common.domain.Failure
 import com.davinomjr.common.interactor.UseCase
-import com.davinomjr.ran.domain.entities.LoginData
+import com.davinomjr.ran.domain.entities.UserData
+import com.davinomjr.ran.util.validation.Validator
+import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 /*
@@ -11,20 +14,22 @@ import javax.inject.Inject
  * at 07/01/2018 20:13
  */
 
-class ValidateLogin @Inject constructor()
-    : UseCase<Boolean, LoginData>() {
+class ValidateLogin @Inject constructor() {
 
-    override suspend fun run(loginData: LoginData): Either<Failure, Boolean> {
-        if(loginData.email.isEmpty() || loginData.password.isEmpty()){
-            return Either.Right(false)
-        }
-        else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(loginData.email).matches()){
-            return Either.Right(false)
-        }
-        else if(loginData.password.length < 6 || loginData.password.length > 20){
-            return Either.Right(false)
-        }
+    fun execute(userData: UserData): Single<Boolean> {
+        return Single.create{
+            var valid = true
+            if(userData.email.isEmpty() || userData.password.isEmpty()){
+                valid = false
+            }
+            else if(!Validator.isEmailValid(userData.email)){
+                valid = false
+            }
+            else if(!Validator.isPasswordValid(userData.password)){
+                valid = false
+            }
 
-        return Either.Right(true)
+            it.onSuccess(valid)
+        }
     }
 }
