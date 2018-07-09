@@ -1,10 +1,7 @@
 package com.davinomjr.ran.di
 
-import com.davinomjr.common.viewmodel.BaseViewModel
 import com.davinomjr.ran.App
-import com.davinomjr.ran.di.module.LoginModule
 import com.davinomjr.ran.di.module.ViewModelModule
-import com.davinomjr.ran.presentation.ui.BaseFragment
 import com.davinomjr.ran.presentation.ui.LoginFragment
 import com.davinomjr.ran.presentation.ui.SignUpFragment
 import dagger.Component
@@ -18,8 +15,7 @@ import javax.inject.Singleton
  @Singleton
  @Component(modules = [
     AppModule::class,
-    ViewModelModule::class,
-    LoginModule::class
+    ViewModelModule::class
  ])
 interface AppComponent {
      fun inject(app: App)
